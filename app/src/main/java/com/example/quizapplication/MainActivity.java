@@ -12,7 +12,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class MainActivity extends AppCompatActivity {
 
-    MaterialCardView easycard,mediumcard,hardcard,scoreboard;
+    MaterialCardView easycard,mediumcard,hardcard,scoreboard,logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         mediumcard = findViewById(R.id.mediumCard);
         hardcard = findViewById(R.id.hardCard);
         scoreboard = findViewById(R.id.scoreCard);
+        logout=findViewById(R.id.logout);
 
         easycard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,HardQuiz.class));
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }

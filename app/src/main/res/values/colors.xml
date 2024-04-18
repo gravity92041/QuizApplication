@@ -13,4 +13,5 @@
     <color name="card_background">#ffff</color>
     <color name="text_color">#1b1b1b</color>
     <color name="text_secondary_color">#44464e</color>
+    <color name="lavender">#8692f7</color>
 </resources>

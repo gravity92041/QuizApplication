@@ -136,6 +136,32 @@
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/logout"
+            app:cardBackgroundColor="@color/card_background"
+            app:strokeWidth="0dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            app:cardCornerRadius="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/text_color"
+                    android:textSize="17sp"
+                    android:text="Exit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

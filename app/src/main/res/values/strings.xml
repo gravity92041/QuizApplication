@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">QuizApplication</string>
+    <string name="Name">Имя</string>
+    <string name="title_activity_upload">UploadActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
 </resources>
