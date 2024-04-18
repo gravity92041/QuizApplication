@@ -24,11 +24,15 @@ public class MainActivity extends AppCompatActivity {
         hardcard = findViewById(R.id.hardCard);
         scoreboard = findViewById(R.id.scoreCard);
         logout=findViewById(R.id.logout);
+        Intent intent = getIntent();
+        String login = intent.getStringExtra("login").toString();
 
         easycard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, BasicQuiz.class));
+                Intent intent1 = new Intent(MainActivity.this,BasicQuiz.class);
+                intent1.putExtra("login",login);
+                startActivity(intent1);
                 finish();
             }
         });
@@ -36,40 +40,37 @@ public class MainActivity extends AppCompatActivity {
         mediumcard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,MediumQuiz.class));
+                Intent intent1 = new Intent(MainActivity.this,MediumQuiz.class);
+                intent1.putExtra("login",login);
+                startActivity(intent1);
+                finish();
             }
         });
         hardcard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,HardQuiz.class));
+                Intent intent1 = new Intent(MainActivity.this,HardQuiz.class);
+                intent1.putExtra("login",login);
+                startActivity(intent1);
+                finish();
             }
         });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent1 = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent1);
+                finish();
+            }
+        });
+        scoreboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,ScoreActivity.class));
 
             }
         });
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(MainActivity.this);
-//        materialAlertDialogBuilder.setTitle(R.string.app_name);
-//        materialAlertDialogBuilder.setMessage("Вы уверены что хотите выйти?");
-//        materialAlertDialogBuilder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                dialog.dismiss();
-//            }
-//        });
-//        materialAlertDialogBuilder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                finish();
-//            }
-//        });
-//        materialAlertDialogBuilder.show();
-//    }
+
 }

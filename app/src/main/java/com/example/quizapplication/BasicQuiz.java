@@ -45,6 +45,8 @@ public class BasicQuiz extends AppCompatActivity {
         loadAllQuestions();
         Collections.shuffle(questionItems);
         setQuestionScreen(currentQuestion);
+        Intent intentFrom = getIntent();
+        String login = intentFrom.getStringExtra("login");
 
         aans.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +76,7 @@ public class BasicQuiz extends AppCompatActivity {
                     Intent intent = new Intent(BasicQuiz.this,ResultActivity.class);
                     intent.putExtra("correct",correct);
                     intent.putExtra("wrong",wrong);
+                    intent.putExtra("login",login);
                     startActivity(intent);
                     finish();
                 }
@@ -107,6 +110,7 @@ public class BasicQuiz extends AppCompatActivity {
                     Intent intent = new Intent(BasicQuiz.this,ResultActivity.class);
                     intent.putExtra("correct",correct);
                     intent.putExtra("wrong",wrong);
+                    intent.putExtra("login",login);
                     startActivity(intent);
                     finish();
                 }
@@ -140,6 +144,7 @@ public class BasicQuiz extends AppCompatActivity {
                     Intent intent = new Intent(BasicQuiz.this,ResultActivity.class);
                     intent.putExtra("correct",correct);
                     intent.putExtra("wrong",wrong);
+                    intent.putExtra("login",login);
                     startActivity(intent);
                     finish();
                 }
@@ -173,6 +178,7 @@ public class BasicQuiz extends AppCompatActivity {
                     Intent intent = new Intent(BasicQuiz.this,ResultActivity.class);
                     intent.putExtra("correct",correct);
                     intent.putExtra("wrong",wrong);
+                    intent.putExtra("login",login);
                     startActivity(intent);
                     finish();
                 }

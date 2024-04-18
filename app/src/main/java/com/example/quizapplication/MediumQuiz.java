@@ -41,6 +41,8 @@ public class MediumQuiz extends AppCompatActivity {
         loadAllQuestions();
         Collections.shuffle(questionItems);
         setQuestionScreen(currentQuestion);
+        Intent intentFrom = getIntent();
+        String login = intentFrom.getStringExtra("login");
 
         aans.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +72,7 @@ public class MediumQuiz extends AppCompatActivity {
                     Intent intent = new Intent(MediumQuiz.this,ResultActivity.class);
                     intent.putExtra("correct",correct);
                     intent.putExtra("wrong",wrong);
+                    intent.putExtra("login",login);
                     startActivity(intent);
                     finish();
                 }
@@ -103,6 +106,7 @@ public class MediumQuiz extends AppCompatActivity {
                     Intent intent = new Intent(MediumQuiz.this,ResultActivity.class);
                     intent.putExtra("correct",correct);
                     intent.putExtra("wrong",wrong);
+                    intent.putExtra("login",login);
                     startActivity(intent);
                     finish();
                 }
@@ -136,6 +140,7 @@ public class MediumQuiz extends AppCompatActivity {
                     Intent intent = new Intent(MediumQuiz.this,ResultActivity.class);
                     intent.putExtra("correct",correct);
                     intent.putExtra("wrong",wrong);
+                    intent.putExtra("login",login);
                     startActivity(intent);
                     finish();
                 }
@@ -169,6 +174,7 @@ public class MediumQuiz extends AppCompatActivity {
                     Intent intent = new Intent(MediumQuiz.this,ResultActivity.class);
                     intent.putExtra("correct",correct);
                     intent.putExtra("wrong",wrong);
+                    intent.putExtra("login",login);
                     startActivity(intent);
                     finish();
                 }

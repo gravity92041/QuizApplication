@@ -96,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (passwordFromDB.equals(userPassword)){
                         loginUsername.setError(null);
                         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                        intent.putExtra("login",loginUsername.getText().toString());
                         startActivity(intent);
                         finish();
 

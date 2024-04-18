@@ -13,11 +13,15 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.card.MaterialCardView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class ResultActivity extends AppCompatActivity {
     MaterialCardView home;
     TextView corectt,wrongg,resultInfo,resultScore;
     ImageView resultImage;
+    FirebaseDatabase database;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +34,14 @@ public class ResultActivity extends AppCompatActivity {
         resultInfo = findViewById(R.id.resultInfo);
         resultScore = findViewById(R.id.resultScore);
         resultImage = findViewById(R.id.resultImage);
+        Intent intentFrom = getIntent();
+        String login = intentFrom.getStringExtra("login");
         int correct = getIntent().getIntExtra("correct",0);
         int wrong = getIntent().getIntExtra("wrong",0);
         int score = correct * 5;
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference("users");
+        reference.child(login).child("score").setValue(score);
 
         corectt.setText(""+correct);
         wrongg.setText(""+wrong);
@@ -53,7 +62,9 @@ public class ResultActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ResultActivity.this,MainActivity.class));
+                Intent intent1 = new Intent(ResultActivity.this,MainActivity.class);
+                intent1.putExtra("login",login);
+                startActivity(intent1);
                 finish();
             }
         });
