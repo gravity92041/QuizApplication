@@ -1,0 +1,68 @@
+{
+  "mediumquestions": [
+    {
+      "question": "Medium Question Answer A",
+      "answer1": "A) A",
+      "answer2": "B) B",
+      "answer3": "C) C",
+      "answer4": "D) D",
+      "correct": "A) A"
+    },
+    {
+      "question": "Medium Question Answer B",
+      "answer1": "A) A",
+      "answer2": "B) B",
+      "answer3": "C) C",
+      "answer4": "D) D",
+      "correct": "B) B"
+    },
+    {
+      "question": "Medium Question Answer C",
+      "answer1": "A) A",
+      "answer2": "B) B",
+      "answer3": "C) C",
+      "answer4": "D) D",
+      "correct": "C) C"
+    },
+    {
+      "question": "Medium Question Answer D",
+      "answer1": "A) A",
+      "answer2": "B) B",
+      "answer3": "C) C",
+      "answer4": "D) D",
+      "correct": "D) D"
+    },
+    {
+      "question": "Medium Question Answer E",
+      "answer1": "A) A",
+      "answer2": "B) B",
+      "answer3": "C) C",
+      "answer4": "D) D",
+      "correct": "A) A"
+    },
+    {
+      "question": "Medium Question Answer F",
+      "answer1": "A) A",
+      "answer2": "B) B",
+      "answer3": "C) C",
+      "answer4": "D) D",
+      "correct": "B) B"
+    },
+    {
+      "question": "Medium Question Answer G",
+      "answer1": "A) A",
+      "answer2": "B) B",
+      "answer3": "C) C",
+      "answer4": "D) D",
+      "correct": "C) C"
+    },
+    {
+      "question": "Medium Question Answer H",
+      "answer1": "A) A",
+      "answer2": "B) B",
+      "answer3": "C) C",
+      "answer4": "D) D",
+      "correct": "D) D"
+    }
+  ]
+}

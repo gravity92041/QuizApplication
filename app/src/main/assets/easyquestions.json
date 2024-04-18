@@ -1,0 +1,68 @@
+{
+  "easyquestions": [
+    {
+      "question": "Easy Question Answer A",
+      "answer1": "A) A",
+      "answer2": "B) B",
+      "answer3": "C) C",
+      "answer4": "D) D",
+      "correct": "A) A"
+    },
+    {
+      "question": "Easy Question Answer B",
+      "answer1": "A) A",
+      "answer2": "B) B",
+      "answer3": "C) C",
+      "answer4": "D) D",
+      "correct": "B) B"
+    },
+    {
+      "question": "Easy Question Answer C",
+      "answer1": "A) A",
+      "answer2": "B) B",
+      "answer3": "C) C",
+      "answer4": "D) D",
+      "correct": "C) C"
+    },
+    {
+      "question": "Easy Question Answer D",
+      "answer1": "A) A",
+      "answer2": "B) B",
+      "answer3": "C) C",
+      "answer4": "D) D",
+      "correct": "D) D"
+    },
+    {
+      "question": "Easy Question Answer A",
+      "answer1": "A) A",
+      "answer2": "B) B",
+      "answer3": "C) C",
+      "answer4": "D) D",
+      "correct": "A) A"
+    },
+    {
+      "question": "Easy Question Answer B",
+      "answer1": "A) A",
+      "answer2": "B) B",
+      "answer3": "C) C",
+      "answer4": "D) D",
+      "correct": "B) B"
+    },
+    {
+      "question": "Easy Question Answer C",
+      "answer1": "A) A",
+      "answer2": "B) B",
+      "answer3": "C) C",
+      "answer4": "D) D",
+      "correct": "C) C"
+    },
+    {
+      "question": "Easy Question Answer D",
+      "answer1": "A) A",
+      "answer2": "B) B",
+      "answer3": "C) C",
+      "answer4": "D) D",
+      "correct": "D) D"
+    }
+  ]
+}

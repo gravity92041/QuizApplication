@@ -13,6 +13,24 @@
         android:theme="@style/Theme.QuizApplication"
         tools:targetApi="31">
         <activity
+            android:name=".ScoreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BasicQuiz"
+            android:exported="false" />
+        <activity
+            android:name=".MediumQuiz"
+            android:exported="false" />
+        <activity
+            android:name=".HardQuiz"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
