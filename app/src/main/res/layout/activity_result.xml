@@ -14,7 +14,7 @@
         android:layout_height="?attr/actionBarSize"
         android:elevation="0dp">
         <com.google.android.material.appbar.MaterialToolbar
-            app:title="Quiz Result"
+            app:title="Результат теста"
             app:titleCentered="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -45,7 +45,7 @@
                 android:textColor="@color/text_color"
                 android:textStyle="bold"
                 android:textSize="17sp"
-                android:text="Result Info"
+                android:text="Ваш результат"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -87,7 +87,7 @@
                     android:textColor="@color/text_color"
                     android:textStyle="bold"
                     android:textSize="17sp"
-                    android:text="Correct"
+                    android:text="Верно"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
@@ -124,7 +124,7 @@
                     android:textColor="@color/text_color"
                     android:textStyle="bold"
                     android:textSize="17sp"
-                    android:text="Wrong"
+                    android:text="Неверно"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
@@ -160,7 +160,7 @@
                 android:textColor="@color/text_color"
                 android:textStyle="bold"
                 android:textSize="17sp"
-                android:text="Return to homepage"
+                android:text="Вернутся на главную"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
