@@ -230,6 +230,8 @@ public class HardQuiz extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        Intent intentFrom = getIntent();
+        String login = intentFrom.getStringExtra("login");
         MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(HardQuiz.this);
         materialAlertDialogBuilder.setTitle(R.string.app_name);
         materialAlertDialogBuilder.setMessage("Вы уверены что хотите перстать отвечать на вопросы?");
@@ -242,7 +244,9 @@ public class HardQuiz extends AppCompatActivity {
         materialAlertDialogBuilder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                startActivity(new Intent(HardQuiz.this,MainActivity.class));
+                Intent intent1 = new Intent(HardQuiz.this,MainActivity.class);
+                intent1.putExtra("login",login);
+                startActivity(intent1);
                 finish();
             }
         });

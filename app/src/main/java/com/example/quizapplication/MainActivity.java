@@ -19,33 +19,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        easycard = findViewById(R.id.easyCard);
-        mediumcard = findViewById(R.id.mediumCard);
+//        easycard = findViewById(R.id.easyCard);
+//        mediumcard = findViewById(R.id.mediumCard);
         hardcard = findViewById(R.id.hardCard);
         scoreboard = findViewById(R.id.scoreCard);
         logout=findViewById(R.id.logout);
         Intent intent = getIntent();
         String login = intent.getStringExtra("login").toString();
 
-        easycard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1 = new Intent(MainActivity.this,BasicQuiz.class);
-                intent1.putExtra("login",login);
-                startActivity(intent1);
-                finish();
-            }
-        });
+//        easycard.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent1 = new Intent(MainActivity.this,BasicQuiz.class);
+//                intent1.putExtra("login",login);
+//                startActivity(intent1);
+//                finish();
+//            }
+//        });
 
-        mediumcard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1 = new Intent(MainActivity.this,MediumQuiz.class);
-                intent1.putExtra("login",login);
-                startActivity(intent1);
-                finish();
-            }
-        });
+//        mediumcard.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent1 = new Intent(MainActivity.this,MediumQuiz.class);
+//                intent1.putExtra("login",login);
+//                startActivity(intent1);
+//                finish();
+//            }
+//        });
         hardcard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
