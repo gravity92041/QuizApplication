@@ -23,7 +23,7 @@ import java.util.List;
 
 public class HardQuiz extends AppCompatActivity {
     TextView quiztext,aans,bans,cans,dans;
-    List<QuestionItem> questionItems;
+    List<QuestionItem> questionItems,limitedList;
     int currentQuestion=0;
     int correct=0,wrong=0;
     Intent intent;
@@ -39,7 +39,10 @@ public class HardQuiz extends AppCompatActivity {
         cans=findViewById(R.id.canswer);
         dans=findViewById(R.id.danswer);
         loadAllQuestions();
+        int limit = 10;
+
         Collections.shuffle(questionItems);
+        limitedList = questionItems.subList(0,Math.min(questionItems.size(),limit));
         setQuestionScreen(currentQuestion);
         Intent intentFrom = getIntent();
         String login = intentFrom.getStringExtra("login");
@@ -47,7 +50,7 @@ public class HardQuiz extends AppCompatActivity {
         aans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (questionItems.get(currentQuestion).getAnswer1().equals(questionItems.get(currentQuestion).getCorrect())){
+                if (limitedList.get(currentQuestion).getAnswer1().equals(limitedList.get(currentQuestion).getCorrect())){
                     correct++;
                     aans.setBackgroundResource(R.color.green);
                     aans.setTextColor(getResources().getColor(R.color.white));
@@ -57,7 +60,7 @@ public class HardQuiz extends AppCompatActivity {
                     aans.setBackgroundResource(R.color.red);
                     aans.setTextColor(getResources().getColor(R.color.white));
                 }
-                if (currentQuestion<questionItems.size()-1){
+                if (currentQuestion<limitedList.size()-1){
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
@@ -81,7 +84,7 @@ public class HardQuiz extends AppCompatActivity {
         bans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (questionItems.get(currentQuestion).getAnswer2().equals(questionItems.get(currentQuestion).getCorrect())){
+                if (limitedList.get(currentQuestion).getAnswer2().equals(limitedList.get(currentQuestion).getCorrect())){
                     correct++;
                     bans.setBackgroundResource(R.color.green);
                     bans.setTextColor(getResources().getColor(R.color.white));
@@ -91,7 +94,7 @@ public class HardQuiz extends AppCompatActivity {
                     bans.setBackgroundResource(R.color.red);
                     bans.setTextColor(getResources().getColor(R.color.white));
                 }
-                if (currentQuestion<questionItems.size()-1){
+                if (currentQuestion<limitedList.size()-1){
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
@@ -115,7 +118,7 @@ public class HardQuiz extends AppCompatActivity {
         cans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (questionItems.get(currentQuestion).getAnswer3().equals(questionItems.get(currentQuestion).getCorrect())){
+                if (limitedList.get(currentQuestion).getAnswer3().equals(limitedList.get(currentQuestion).getCorrect())){
                     correct++;
                     cans.setBackgroundResource(R.color.green);
                     cans.setTextColor(getResources().getColor(R.color.white));
@@ -125,7 +128,7 @@ public class HardQuiz extends AppCompatActivity {
                     cans.setBackgroundResource(R.color.red);
                     cans.setTextColor(getResources().getColor(R.color.white));
                 }
-                if (currentQuestion<questionItems.size()-1){
+                if (currentQuestion<limitedList.size()-1){
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
@@ -149,7 +152,7 @@ public class HardQuiz extends AppCompatActivity {
         dans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (questionItems.get(currentQuestion).getAnswer4().equals(questionItems.get(currentQuestion).getCorrect())){
+                if (limitedList.get(currentQuestion).getAnswer4().equals(limitedList.get(currentQuestion).getCorrect())){
                     correct++;
                     dans.setBackgroundResource(R.color.green);
                     dans.setTextColor(getResources().getColor(R.color.white));
@@ -159,7 +162,7 @@ public class HardQuiz extends AppCompatActivity {
                     dans.setBackgroundResource(R.color.red);
                     dans.setTextColor(getResources().getColor(R.color.white));
                 }
-                if (currentQuestion<questionItems.size()-1){
+                if (currentQuestion<limitedList.size()-1){
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
@@ -183,15 +186,16 @@ public class HardQuiz extends AppCompatActivity {
     }
 
     private void setQuestionScreen(int currentQuestion) {
-        quiztext.setText(questionItems.get(currentQuestion).getQuestions());
-        aans.setText(questionItems.get(currentQuestion).getAnswer1());
-        bans.setText(questionItems.get(currentQuestion).getAnswer2());
-        cans.setText(questionItems.get(currentQuestion).getAnswer3());
-        dans.setText(questionItems.get(currentQuestion).getAnswer4());
+        quiztext.setText(limitedList.get(currentQuestion).getQuestions());
+        aans.setText(limitedList.get(currentQuestion).getAnswer1());
+        bans.setText(limitedList.get(currentQuestion).getAnswer2());
+        cans.setText(limitedList.get(currentQuestion).getAnswer3());
+        dans.setText(limitedList.get(currentQuestion).getAnswer4());
     }
 
     private void loadAllQuestions(){
         questionItems=new ArrayList<>();
+
         String jsonquiz = loadJsonFromAsset("hardquestions.json");
         try {
             JSONObject jsonObject = new JSONObject(jsonquiz);

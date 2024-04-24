@@ -23,7 +23,7 @@ public class SignUpActivity extends AppCompatActivity {
     TextView loginRedirectText;
     Button signupButton;
     FirebaseDatabase database;
-    DatabaseReference reference;
+    DatabaseReference reference,reference2;
     DatabaseReference referenceApplication;
 
     @Override
@@ -40,13 +40,15 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View view) {
                 database = FirebaseDatabase.getInstance();
                 reference = database.getReference("users");
-                String username = signupUsername.getText().toString();
-                String password = signupPassword.getText().toString();
+                reference2 = database.getReference("questions");
+                String username = signupUsername.getText().toString().trim();
+                String password = signupPassword.getText().toString().trim();
                 HelperClass helperClass = new HelperClass(username,password);
                 reference.child(username).setValue(helperClass);
                 Toast.makeText(SignUpActivity.this,"Успешная регистрация", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(SignUpActivity.this,LoginActivity.class);
                 startActivity(intent);
+
 
             }
         });
