@@ -19,6 +19,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -328,8 +329,36 @@ public class HardQuiz extends AppCompatActivity {
 //        onState.putInt("question",currentQuestion);
 //        onState.putInt("wrong",wrong);
 //        onState.putInt("correct",correct);
-//        onState.putStringArrayList("limitedList",limitedList);
+//        onState.putSerializable("Question 1",limitedList.get(0));
+//        onState.putSerializable("Question 2",limitedList.get(1));
+//        onState.putSerializable("Question 3",limitedList.get(2));
+//        onState.putSerializable("Question 4",limitedList.get(3));
+//        onState.putSerializable("Question 5",limitedList.get(4));
+//        onState.putSerializable("Question 6",limitedList.get(5));
+//        onState.putSerializable("Question 7",limitedList.get(6));
+//        onState.putSerializable("Question 8",limitedList.get(7));
+//        onState.putSerializable("Question 9",limitedList.get(8));
+//        onState.putSerializable("Question 10",limitedList.get(9));
+//        onState.putBoolean("isFifty",fifty.isEnabled());
+//        onState.putBoolean("isFriendHelp",friendHelp.isEnabled());
+//    }
 //
-//
+//    @Override
+//    protected void onRestoreInstanceState(Bundle savedInstanceState){
+//        currentQuestion =   savedInstanceState.getInt("question");
+//        wrong = savedInstanceState.getInt("wrong");
+//        correct = savedInstanceState.getInt("correct");
+//        fifty.setEnabled(savedInstanceState.getBoolean("isFifty"));
+//        friendHelp.setEnabled(savedInstanceState.getBoolean("isFriendHelp"));
+//        limitedList.set(0, (QuestionItem) savedInstanceState.getSerializable("Question 1"));
+//        limitedList.set(1, (QuestionItem) savedInstanceState.getSerializable("Question 2"));
+//        limitedList.set(2, (QuestionItem) savedInstanceState.getSerializable("Question 3"));
+//        limitedList.set(3, (QuestionItem) savedInstanceState.getSerializable("Question 4"));
+//        limitedList.set(4, (QuestionItem) savedInstanceState.getSerializable("Question 5"));
+//        limitedList.set(5, (QuestionItem) savedInstanceState.getSerializable("Question 6"));
+//        limitedList.set(6, (QuestionItem) savedInstanceState.getSerializable("Question 7"));
+//        limitedList.set(7, (QuestionItem) savedInstanceState.getSerializable("Question 8"));
+//        limitedList.set(8, (QuestionItem) savedInstanceState.getSerializable("Question 9"));
+//        limitedList.set(9, (QuestionItem) savedInstanceState.getSerializable("Question 10"));
 //    }
 }
