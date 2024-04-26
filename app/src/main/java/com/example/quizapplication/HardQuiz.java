@@ -59,7 +59,8 @@ public class HardQuiz extends AppCompatActivity {
         fifty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                fifty.setEnabled(false);
+                disableIncorrectAnswers();
             }
         });
 
@@ -201,9 +202,37 @@ public class HardQuiz extends AppCompatActivity {
             }
         });
     }
+    private void disableIncorrectAnswers(){
+        List<MaterialCardView> incorrectAnswers  = new ArrayList<>();
 
+        // Determine which answers are incorrect and disable them
+        if (!limitedList.get(currentQuestion).getAnswer1().equals(limitedList.get(currentQuestion).getCorrect())) {
+            incorrectAnswers.add(answer1);
+//            answer1.setVisibility(View.INVISIBLE);
+        }
+        if (!limitedList.get(currentQuestion).getAnswer2().equals(limitedList.get(currentQuestion).getCorrect())) {
+//            answer2.setVisibility(View.INVISIBLE);
+            incorrectAnswers.add(answer2);
+        }
+        if (!limitedList.get(currentQuestion).getAnswer3().equals(limitedList.get(currentQuestion).getCorrect())) {
+//            answer3.setVisibility(View.INVISIBLE);
+            incorrectAnswers.add(answer3);
+        }
+        if (!limitedList.get(currentQuestion).getAnswer4().equals(limitedList.get(currentQuestion).getCorrect())) {
+//            answer4.setVisibility(View.INVISIBLE);
+            incorrectAnswers.add(answer4);
+        }
+        Collections.shuffle(incorrectAnswers);
+        incorrectAnswers.get(0).setVisibility(View.INVISIBLE);
+        incorrectAnswers.get(1).setVisibility(View.INVISIBLE);
+    }
     private void setQuestionScreen(int currentQuestion) {
-        quiztext.setText(limitedList.get(currentQuestion).getQuestions() +" "+currentQuestion+"/10");
+        quiztext.setText(limitedList.get(currentQuestion).getQuestions() +" "+(currentQuestion+1) +"/10");
+        answer1.setVisibility(View.VISIBLE);
+        answer2.setVisibility(View.VISIBLE);
+        answer3.setVisibility(View.VISIBLE);
+        answer4.setVisibility(View.VISIBLE);
+
         aans.setText(limitedList.get(currentQuestion).getAnswer1());
         bans.setText(limitedList.get(currentQuestion).getAnswer2());
         cans.setText(limitedList.get(currentQuestion).getAnswer3());
