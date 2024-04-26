@@ -27,6 +27,7 @@
 
     <com.google.android.material.card.MaterialCardView
         style="@style/TestCard"
+        app:cardBackgroundColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -36,7 +37,7 @@
             android:layout_height="150dp">
             <TextView
                 android:textSize="20sp"
-                android:textColor="@color/text_secondary_color"
+                android:textColor="@color/black"
                 android:padding="25dp"
                 android:gravity="center"
                 android:id="@+id/quizText"
@@ -45,14 +46,17 @@
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/answer1"
         style="@style/TestCard"
         android:layout_width="match_parent"
+        app:cardBackgroundColor="@color/white"
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+
                 android:textSize="20sp"
                 android:textColor="@color/text_secondary_color"
                 android:padding="25dp"
@@ -65,6 +69,8 @@
     <com.google.android.material.card.MaterialCardView
         style="@style/TestCard"
         android:layout_width="match_parent"
+        android:id="@+id/answer2"
+        app:cardBackgroundColor="@color/white"
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_gravity="center"
@@ -83,6 +89,8 @@
     <com.google.android.material.card.MaterialCardView
         style="@style/TestCard"
         android:layout_width="match_parent"
+        app:cardBackgroundColor="@color/white"
+        android:id="@+id/answer3"
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_gravity="center"
@@ -101,6 +109,8 @@
     <com.google.android.material.card.MaterialCardView
         style="@style/TestCard"
         android:layout_width="match_parent"
+        app:cardBackgroundColor="@color/white"
+        android:id="@+id/answer4"
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_gravity="center"
@@ -116,6 +126,23 @@
                 android:layout_height="match_parent"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:layout_marginHorizontal="130dp"
+            android:id="@+id/fifty"
+            android:layout_width="wrap_content"
+            android:text="50/50"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
 
 
 

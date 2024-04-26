@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.json.JSONArray;
@@ -24,20 +26,27 @@ import java.util.List;
 public class HardQuiz extends AppCompatActivity {
     TextView quiztext,aans,bans,cans,dans;
     List<QuestionItem> questionItems,limitedList;
+    MaterialCardView answer1,answer2,answer3,answer4;
+    Button fifty;
     int currentQuestion=0;
     int correct=0,wrong=0;
-    Intent intent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-
+        answer1 = findViewById(R.id.answer1);
+        answer2 = findViewById(R.id.answer2);
+        answer3 = findViewById(R.id.answer3);
+        answer4 = findViewById(R.id.answer4);
         quiztext =findViewById(R.id.quizText);
         aans=findViewById(R.id.aanswer);
         bans=findViewById(R.id.banswer);
         cans=findViewById(R.id.canswer);
         dans=findViewById(R.id.danswer);
+
+        fifty = findViewById(R.id.fifty);
         loadAllQuestions();
         int limit = 10;
 
@@ -47,6 +56,13 @@ public class HardQuiz extends AppCompatActivity {
         Intent intentFrom = getIntent();
         String login = intentFrom.getStringExtra("login");
 
+        fifty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         aans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +70,7 @@ public class HardQuiz extends AppCompatActivity {
                     correct++;
                     aans.setBackgroundResource(R.color.green);
                     aans.setTextColor(getResources().getColor(R.color.white));
+
                 }
                 else {
                     wrong++;
@@ -186,7 +203,7 @@ public class HardQuiz extends AppCompatActivity {
     }
 
     private void setQuestionScreen(int currentQuestion) {
-        quiztext.setText(limitedList.get(currentQuestion).getQuestions());
+        quiztext.setText(limitedList.get(currentQuestion).getQuestions() +" "+currentQuestion+"/10");
         aans.setText(limitedList.get(currentQuestion).getAnswer1());
         bans.setText(limitedList.get(currentQuestion).getAnswer2());
         cans.setText(limitedList.get(currentQuestion).getAnswer3());
