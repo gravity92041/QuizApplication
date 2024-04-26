@@ -133,13 +133,20 @@
         android:orientation="horizontal"
         >
         <Button
-            android:layout_marginHorizontal="130dp"
+            android:layout_marginLeft="100dp"
             android:id="@+id/fifty"
             android:layout_width="wrap_content"
             android:text="50/50"
             android:textColor="@color/black"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/friendHelp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:text="Помощь друга"
+            android:textColor="@color/black"/>
+
 
 
     </LinearLayout>

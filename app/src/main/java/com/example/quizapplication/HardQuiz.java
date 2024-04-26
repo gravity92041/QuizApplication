@@ -27,7 +27,7 @@ public class HardQuiz extends AppCompatActivity {
     TextView quiztext,aans,bans,cans,dans;
     List<QuestionItem> questionItems,limitedList;
     MaterialCardView answer1,answer2,answer3,answer4;
-    Button fifty;
+    Button fifty,friendHelp;
     int currentQuestion=0;
     int correct=0,wrong=0;
 
@@ -41,6 +41,7 @@ public class HardQuiz extends AppCompatActivity {
         answer3 = findViewById(R.id.answer3);
         answer4 = findViewById(R.id.answer4);
         quiztext =findViewById(R.id.quizText);
+        friendHelp = findViewById(R.id.friendHelp);
         aans=findViewById(R.id.aanswer);
         bans=findViewById(R.id.banswer);
         cans=findViewById(R.id.canswer);
@@ -61,6 +62,13 @@ public class HardQuiz extends AppCompatActivity {
             public void onClick(View v) {
                 fifty.setEnabled(false);
                 disableIncorrectAnswers();
+            }
+        });
+        friendHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                friendHelp.setEnabled(false);
+                friendHelp();
             }
         });
 
@@ -202,6 +210,18 @@ public class HardQuiz extends AppCompatActivity {
             }
         });
     }
+    private void friendHelp(){
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "Вопрос: "+ limitedList.get(currentQuestion).getQuestions()+"\n"+
+                "Варианты ответа: "+limitedList.get(currentQuestion).getAnswer1()+" "
+        +limitedList.get(currentQuestion).getAnswer2()+ " "+
+        limitedList.get(currentQuestion).getAnswer3()+" "+
+        limitedList.get(currentQuestion).getAnswer4());
+        shareIntent.setType("text/plain");
+        startActivity(Intent.createChooser(shareIntent, "Поделиться с помощью"));
+
+    }
     private void disableIncorrectAnswers(){
         List<MaterialCardView> incorrectAnswers  = new ArrayList<>();
 
@@ -302,4 +322,14 @@ public class HardQuiz extends AppCompatActivity {
         });
         materialAlertDialogBuilder.show();
     }
+//    @Override
+//    protected void onSaveInstanceState(Bundle onState){
+//        super.onSaveInstanceState(onState);
+//        onState.putInt("question",currentQuestion);
+//        onState.putInt("wrong",wrong);
+//        onState.putInt("correct",correct);
+//        onState.putStringArrayList("limitedList",limitedList);
+//
+//
+//    }
 }
