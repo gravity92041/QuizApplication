@@ -29,8 +29,9 @@ public class HardQuiz extends AppCompatActivity {
     List<QuestionItem> questionItems,limitedList;
     MaterialCardView answer1,answer2,answer3,answer4;
     Button fifty,friendHelp;
-    int currentQuestion=0;
-    int correct=0,wrong=0;
+    int currentQuestion;
+    int correct,wrong;
+    boolean isRestored = false;
 
 
     @Override
@@ -49,11 +50,27 @@ public class HardQuiz extends AppCompatActivity {
         dans=findViewById(R.id.danswer);
 
         fifty = findViewById(R.id.fifty);
-        loadAllQuestions();
-        int limit = 10;
+        if (savedInstanceState!=null && !savedInstanceState.isEmpty() && savedInstanceState.containsKey("isRestored")){
+            isRestored=savedInstanceState.getBoolean("isRestored");
+        }
 
-        Collections.shuffle(questionItems);
-        limitedList = questionItems.subList(0,Math.min(questionItems.size(),limit));
+        if (isRestored){
+
+            currentQuestion =   savedInstanceState.getInt("question");
+            wrong = savedInstanceState.getInt("wrong");
+            correct = savedInstanceState.getInt("correct");
+            fifty.setEnabled(savedInstanceState.getBoolean("isFifty"));
+            friendHelp.setEnabled(savedInstanceState.getBoolean("isFriendHelp"));
+            ArrayList<QuestionItem> list = (ArrayList<QuestionItem>) savedInstanceState.getSerializable("myList");
+            limitedList = list;
+        }
+        else {
+            loadAllQuestions();
+            int limit = 10;
+            Collections.shuffle(questionItems);
+            limitedList = questionItems.subList(0,Math.min(questionItems.size(),limit));
+        }
+
         setQuestionScreen(currentQuestion);
         Intent intentFrom = getIntent();
         String login = intentFrom.getStringExtra("login");
@@ -248,16 +265,16 @@ public class HardQuiz extends AppCompatActivity {
         incorrectAnswers.get(1).setVisibility(View.INVISIBLE);
     }
     private void setQuestionScreen(int currentQuestion) {
-        quiztext.setText(limitedList.get(currentQuestion).getQuestions() +" "+(currentQuestion+1) +"/10");
         answer1.setVisibility(View.VISIBLE);
         answer2.setVisibility(View.VISIBLE);
         answer3.setVisibility(View.VISIBLE);
         answer4.setVisibility(View.VISIBLE);
 
-        aans.setText(limitedList.get(currentQuestion).getAnswer1());
-        bans.setText(limitedList.get(currentQuestion).getAnswer2());
-        cans.setText(limitedList.get(currentQuestion).getAnswer3());
-        dans.setText(limitedList.get(currentQuestion).getAnswer4());
+            quiztext.setText(limitedList.get(currentQuestion).getQuestions() +" "+(currentQuestion+1) +"/10");
+            aans.setText(limitedList.get(currentQuestion).getAnswer1());
+            bans.setText(limitedList.get(currentQuestion).getAnswer2());
+            cans.setText(limitedList.get(currentQuestion).getAnswer3());
+            dans.setText(limitedList.get(currentQuestion).getAnswer4());
     }
 
     private void loadAllQuestions(){
@@ -323,42 +340,18 @@ public class HardQuiz extends AppCompatActivity {
         });
         materialAlertDialogBuilder.show();
     }
-//    @Override
-//    protected void onSaveInstanceState(Bundle onState){
-//        super.onSaveInstanceState(onState);
-//        onState.putInt("question",currentQuestion);
-//        onState.putInt("wrong",wrong);
-//        onState.putInt("correct",correct);
-//        onState.putSerializable("Question 1",limitedList.get(0));
-//        onState.putSerializable("Question 2",limitedList.get(1));
-//        onState.putSerializable("Question 3",limitedList.get(2));
-//        onState.putSerializable("Question 4",limitedList.get(3));
-//        onState.putSerializable("Question 5",limitedList.get(4));
-//        onState.putSerializable("Question 6",limitedList.get(5));
-//        onState.putSerializable("Question 7",limitedList.get(6));
-//        onState.putSerializable("Question 8",limitedList.get(7));
-//        onState.putSerializable("Question 9",limitedList.get(8));
-//        onState.putSerializable("Question 10",limitedList.get(9));
-//        onState.putBoolean("isFifty",fifty.isEnabled());
-//        onState.putBoolean("isFriendHelp",friendHelp.isEnabled());
-//    }
-//
-//    @Override
-//    protected void onRestoreInstanceState(Bundle savedInstanceState){
-//        currentQuestion =   savedInstanceState.getInt("question");
-//        wrong = savedInstanceState.getInt("wrong");
-//        correct = savedInstanceState.getInt("correct");
-//        fifty.setEnabled(savedInstanceState.getBoolean("isFifty"));
-//        friendHelp.setEnabled(savedInstanceState.getBoolean("isFriendHelp"));
-//        limitedList.set(0, (QuestionItem) savedInstanceState.getSerializable("Question 1"));
-//        limitedList.set(1, (QuestionItem) savedInstanceState.getSerializable("Question 2"));
-//        limitedList.set(2, (QuestionItem) savedInstanceState.getSerializable("Question 3"));
-//        limitedList.set(3, (QuestionItem) savedInstanceState.getSerializable("Question 4"));
-//        limitedList.set(4, (QuestionItem) savedInstanceState.getSerializable("Question 5"));
-//        limitedList.set(5, (QuestionItem) savedInstanceState.getSerializable("Question 6"));
-//        limitedList.set(6, (QuestionItem) savedInstanceState.getSerializable("Question 7"));
-//        limitedList.set(7, (QuestionItem) savedInstanceState.getSerializable("Question 8"));
-//        limitedList.set(8, (QuestionItem) savedInstanceState.getSerializable("Question 9"));
-//        limitedList.set(9, (QuestionItem) savedInstanceState.getSerializable("Question 10"));
-//    }
+    @Override
+    protected void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+        outState.putInt("question",currentQuestion);
+        outState.putInt("wrong",wrong);
+        outState.putInt("correct",correct);
+        ArrayList<QuestionItem> list = new ArrayList<>(limitedList);
+        outState.putSerializable("myList",list);
+        outState.putBoolean("isFifty",fifty.isEnabled());
+        outState.putBoolean("isFriendHelp",friendHelp.isEnabled());
+        outState.putBoolean("isRestored", true);
+    }
+
+
 }
