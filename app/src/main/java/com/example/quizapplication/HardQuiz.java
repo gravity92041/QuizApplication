@@ -19,6 +19,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,9 +28,10 @@ public class HardQuiz extends AppCompatActivity {
     TextView quiztext,aans,bans,cans,dans;
     List<QuestionItem> questionItems,limitedList;
     MaterialCardView answer1,answer2,answer3,answer4;
-    Button fifty;
-    int currentQuestion=0;
-    int correct=0,wrong=0;
+    Button fifty,friendHelp;
+    int currentQuestion;
+    int correct,wrong;
+    boolean isRestored = false;
 
 
     @Override
@@ -41,17 +43,34 @@ public class HardQuiz extends AppCompatActivity {
         answer3 = findViewById(R.id.answer3);
         answer4 = findViewById(R.id.answer4);
         quiztext =findViewById(R.id.quizText);
+        friendHelp = findViewById(R.id.friendHelp);
         aans=findViewById(R.id.aanswer);
         bans=findViewById(R.id.banswer);
         cans=findViewById(R.id.canswer);
         dans=findViewById(R.id.danswer);
 
         fifty = findViewById(R.id.fifty);
-        loadAllQuestions();
-        int limit = 10;
+        if (savedInstanceState!=null && !savedInstanceState.isEmpty() && savedInstanceState.containsKey("isRestored")){
+            isRestored=savedInstanceState.getBoolean("isRestored");
+        }
 
-        Collections.shuffle(questionItems);
-        limitedList = questionItems.subList(0,Math.min(questionItems.size(),limit));
+        if (isRestored){
+
+            currentQuestion =   savedInstanceState.getInt("question");
+            wrong = savedInstanceState.getInt("wrong");
+            correct = savedInstanceState.getInt("correct");
+            fifty.setEnabled(savedInstanceState.getBoolean("isFifty"));
+            friendHelp.setEnabled(savedInstanceState.getBoolean("isFriendHelp"));
+            ArrayList<QuestionItem> list = (ArrayList<QuestionItem>) savedInstanceState.getSerializable("myList");
+            limitedList = list;
+        }
+        else {
+            loadAllQuestions();
+            int limit = 10;
+            Collections.shuffle(questionItems);
+            limitedList = questionItems.subList(0,Math.min(questionItems.size(),limit));
+        }
+
         setQuestionScreen(currentQuestion);
         Intent intentFrom = getIntent();
         String login = intentFrom.getStringExtra("login");
@@ -59,7 +78,15 @@ public class HardQuiz extends AppCompatActivity {
         fifty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                fifty.setEnabled(false);
+                disableIncorrectAnswers();
+            }
+        });
+        friendHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                friendHelp.setEnabled(false);
+                friendHelp();
             }
         });
 
@@ -201,13 +228,53 @@ public class HardQuiz extends AppCompatActivity {
             }
         });
     }
+    private void friendHelp(){
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "Вопрос: "+ limitedList.get(currentQuestion).getQuestions()+"\n"+
+                "Варианты ответа: "+limitedList.get(currentQuestion).getAnswer1()+" "
+        +limitedList.get(currentQuestion).getAnswer2()+ " "+
+        limitedList.get(currentQuestion).getAnswer3()+" "+
+        limitedList.get(currentQuestion).getAnswer4());
+        shareIntent.setType("text/plain");
+        startActivity(Intent.createChooser(shareIntent, "Поделиться с помощью"));
 
+    }
+    private void disableIncorrectAnswers(){
+        List<MaterialCardView> incorrectAnswers  = new ArrayList<>();
+
+        // Determine which answers are incorrect and disable them
+        if (!limitedList.get(currentQuestion).getAnswer1().equals(limitedList.get(currentQuestion).getCorrect())) {
+            incorrectAnswers.add(answer1);
+//            answer1.setVisibility(View.INVISIBLE);
+        }
+        if (!limitedList.get(currentQuestion).getAnswer2().equals(limitedList.get(currentQuestion).getCorrect())) {
+//            answer2.setVisibility(View.INVISIBLE);
+            incorrectAnswers.add(answer2);
+        }
+        if (!limitedList.get(currentQuestion).getAnswer3().equals(limitedList.get(currentQuestion).getCorrect())) {
+//            answer3.setVisibility(View.INVISIBLE);
+            incorrectAnswers.add(answer3);
+        }
+        if (!limitedList.get(currentQuestion).getAnswer4().equals(limitedList.get(currentQuestion).getCorrect())) {
+//            answer4.setVisibility(View.INVISIBLE);
+            incorrectAnswers.add(answer4);
+        }
+        Collections.shuffle(incorrectAnswers);
+        incorrectAnswers.get(0).setVisibility(View.INVISIBLE);
+        incorrectAnswers.get(1).setVisibility(View.INVISIBLE);
+    }
     private void setQuestionScreen(int currentQuestion) {
-        quiztext.setText(limitedList.get(currentQuestion).getQuestions() +" "+currentQuestion+"/10");
-        aans.setText(limitedList.get(currentQuestion).getAnswer1());
-        bans.setText(limitedList.get(currentQuestion).getAnswer2());
-        cans.setText(limitedList.get(currentQuestion).getAnswer3());
-        dans.setText(limitedList.get(currentQuestion).getAnswer4());
+        answer1.setVisibility(View.VISIBLE);
+        answer2.setVisibility(View.VISIBLE);
+        answer3.setVisibility(View.VISIBLE);
+        answer4.setVisibility(View.VISIBLE);
+
+            quiztext.setText(limitedList.get(currentQuestion).getQuestions() +" "+(currentQuestion+1) +"/10");
+            aans.setText(limitedList.get(currentQuestion).getAnswer1());
+            bans.setText(limitedList.get(currentQuestion).getAnswer2());
+            cans.setText(limitedList.get(currentQuestion).getAnswer3());
+            dans.setText(limitedList.get(currentQuestion).getAnswer4());
     }
 
     private void loadAllQuestions(){
@@ -273,4 +340,18 @@ public class HardQuiz extends AppCompatActivity {
         });
         materialAlertDialogBuilder.show();
     }
+    @Override
+    protected void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+        outState.putInt("question",currentQuestion);
+        outState.putInt("wrong",wrong);
+        outState.putInt("correct",correct);
+        ArrayList<QuestionItem> list = new ArrayList<>(limitedList);
+        outState.putSerializable("myList",list);
+        outState.putBoolean("isFifty",fifty.isEnabled());
+        outState.putBoolean("isFriendHelp",friendHelp.isEnabled());
+        outState.putBoolean("isRestored", true);
+    }
+
+
 }

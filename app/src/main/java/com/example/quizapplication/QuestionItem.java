@@ -1,6 +1,8 @@
 package com.example.quizapplication;
 
-public class QuestionItem {
+import java.io.Serializable;
+
+public class QuestionItem implements Serializable {
     String questions,answer1,answer2,answer3,answer4,correct;
 
     public QuestionItem(String questions, String answer1, String answer2, String answer3, String answer4, String correct) {
